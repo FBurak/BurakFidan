@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
-<html>
+<html lang="tr">
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <title>Login Page</title>
         <link rel="stylesheet"  href="loginstyle.css">
     </head>
@@ -9,7 +9,7 @@
         <div class="Loginbox">
             <img src="images/aka.png" class="avatar">
                 <h1>GIRIS YAPIN</h1>
-                <form action="log1.php" method="POST" >   
+                <form name="loginform" action="log1.php" method="POST" onsubmit="return  kontrol()" >   
             
                     <p>KULLANICI ADI</p>
                     <input type="text" name="ADI" placeholder="Kullanıcı adınızı giriniz"><br><br>
@@ -20,12 +20,32 @@
                     value="Login"
                     formaction="log1.php"
                     formmethod="post">
-                    
                 </form>
                 
 
             
         </div>
     </body>
+    <script>
+        function kontrol() {
+            var ADI = document.forms["loginform"]["ADI"].value;
+            var PAROLA = document.forms["loginform"]["PAROLA"].value;
+
+            var atpos = ADI.indexOf("@");
+            var dotpos = ADI.lastIndexOf(".");
+    
+            if (ADI == null || ADI == "", PAROLA == null || PAROLA == "") {
+                alert("Tüm alanları doldurduğunuzdan emin olunuz!");
+                return false;
+            } else if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= ADI.length) {
+                alert("Lütfen mail adresine bir @ işareti ekleyin.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </html>    
